@@ -5,6 +5,8 @@
  */
 package interfaz;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author jaime
@@ -80,9 +82,19 @@ public class Ejercicio extends javax.swing.JFrame {
         jPanel1.add(lblMontoTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, 70, -1));
 
         cmdCalcular.setText("Calcular");
+        cmdCalcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdCalcularActionPerformed(evt);
+            }
+        });
         jPanel1.add(cmdCalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, -1, -1));
 
         cmdBorrar.setText("Borrar");
+        cmdBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdBorrarActionPerformed(evt);
+            }
+        });
         jPanel1.add(cmdBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 160, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -120,6 +132,39 @@ public class Ejercicio extends javax.swing.JFrame {
               evt.consume(); 
           }        
     }//GEN-LAST:event_txtCantHijosKeyTyped
+
+    private void cmdCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCalcularActionPerformed
+
+    if(txtCantHijos.getText().trim().isEmpty()){
+        JOptionPane.showMessageDialog(this, "Digite la cantidad de hijos","ERROR",JOptionPane.ERROR_MESSAGE);     
+        txtCantHijos.requestFocusInWindow();
+        
+    }else if(txtSueldo.getText().trim().isEmpty()){
+        JOptionPane.showMessageDialog(this, "Digite el sueldo del empleado ","ERROR",JOptionPane.ERROR_MESSAGE);
+        txtSueldo.requestFocusInWindow();
+    }else{
+        
+        double sueldo=Double.parseDouble(txtSueldo.getText());
+        double ch=Double.parseDouble(txtCantHijos.getText());
+        
+        double bo=80.000*ch;
+        double mt=bo+sueldo;
+        
+        lblBonificacion.setText(""+bo);
+        lblMontoTotal.setText(""+mt);
+             
+    }       
+    }//GEN-LAST:event_cmdCalcularActionPerformed
+
+    private void cmdBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBorrarActionPerformed
+
+    txtCantHijos.setText("");
+    txtSueldo.setText("");
+    lblBonificacion.setText("");
+    lblMontoTotal.setText("");
+    
+    txtSueldo.requestFocusInWindow();
+    }//GEN-LAST:event_cmdBorrarActionPerformed
 
     /**
      * @param args the command line arguments
